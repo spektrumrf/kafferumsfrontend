@@ -6,7 +6,7 @@ var Link = require('react-router-dom').Link;
 
 const users = getUsernameList();
 const listUsers = users.map((user) =>
-  <li>{user}</li>
+  <li key={user}>{user}</li>
 );
 
 class Login extends Component {
