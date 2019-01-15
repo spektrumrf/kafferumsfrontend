@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Backend from './utils/backend'
+import * as Backend from './utils/backend'
 
 import { asyncComponent } from 'react-async-component';
 
