@@ -6,7 +6,7 @@ import { asyncComponent } from 'react-async-component';
 
 var Link = require('react-router-dom').Link;
 
-var moi = ({ productId }) => {
+var getUsers = ({ productId }) => {
     const users = getUsernameList();
     const listUsers = users.map((user) =>
         <li key={user}>{user}</li>
@@ -17,7 +17,7 @@ var moi = ({ productId }) => {
 }
 
 const AsyncProduct = asyncComponent({
-    resolve: () => moi,
+    resolve: () => getUsers,
     LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
     ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
   });
@@ -28,7 +28,7 @@ class Login extends Component {
     
     render() {
         return (
-            <div>
+            <div class = "full">
                 <h1>Getting something done..?</h1>
                 <h2>Users:</h2>
                 <AsyncProduct productId={1} />
