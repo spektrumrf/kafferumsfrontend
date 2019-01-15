@@ -7,9 +7,11 @@ var Link = require('react-router-dom').Link;
 
 function listify(list) {
 	const newList = list.map((item) =>
-		<div key={item} className = "box font1">
-			<li>{item}</li>
-		</div>
+		<a key={item} href={"/pin?user=" + item}>
+			<div className = "box font1">
+				<li>{item}</li>
+			</div>
+		</a>
 	);
 	return <ul className = "center"> {newList} </ul>
 }
@@ -22,9 +24,7 @@ class Login extends Component {
         return (
             <div className = "full">
                 <h2>Select user:</h2>
-                <a href="https://spektrum.fi/">
-                	<AsyncUserList />
-                </a>
+                <AsyncUserList />
             </div>
         )
     }
