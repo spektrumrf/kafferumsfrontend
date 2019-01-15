@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Login from './Login';
+import EnterPIN from './EnterPIN';
 
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
@@ -15,6 +16,7 @@ class App extends Component {
         <div className='container'>
           <Switch>
             <Route exact path='/' component={Login} />
+            <Route exact path='/pin' component={EnterPIN} />
             <Route render={
               function() {
                 return <p>Not found</p>
