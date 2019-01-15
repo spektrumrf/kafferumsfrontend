@@ -6,23 +6,31 @@ import { asyncComponent } from 'react-async-component';
 
 var Link = require('react-router-dom').Link;
 
-var getUsers = ({ productId }) => {
-    const users = Backend.getUsernameList();
-    const listUsers = users.map((user) =>
-        <li key={user}>{user}</li>
-    );
-    return (
-        <ul> {listUsers} </ul>
-    )
+function listify(list) {
+	const newList = list.map((item) =>
+	    <li key={item}>{item}</li>
+	);
+	return (
+	    <ul> {newList} </ul>
+	)
+}
+
+var getUsers = () => {
+	var promise = new Promise(function(resolve, reject) {
+		Backend.getUsernameList(resolve, reject);
+	})
+	var handleError = (text, http) => {
+		return "ERROR\nbody: " + text + "\nhttp: " + http
+	}
+	promise.then(listify, handleError)
+	return promise
 }
 
 const AsyncProduct = asyncComponent({
-    resolve: () => getUsers,
+    resolve: getUsers,
     LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
     ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
-  });
-   
-  
+});
 
 class Login extends Component {
     
@@ -34,12 +42,7 @@ class Login extends Component {
                 <AsyncProduct productId={1} />
             </div>
         )
-        
     }
-    
 }
-
-
-
 
 export default Login
