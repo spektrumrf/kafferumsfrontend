@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import getUsernameList from './utils/backend'
+import Backend from './utils/backend'
 
 import { asyncComponent } from 'react-async-component';
 
 var Link = require('react-router-dom').Link;
 
 var getUsers = ({ productId }) => {
-    const users = getUsernameList();
+    const users = Backend.getUsernameList();
     const listUsers = users.map((user) =>
         <li key={user}>{user}</li>
     );
