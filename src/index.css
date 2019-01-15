@@ -68,7 +68,7 @@ object {
 h1 {
   font-family:Georgia, serif;
   font-size: 30px;
-  font-weight:lighter; /*700 = bold*/
+  font-weight:bold; /*bold/lighter*/
   text-align:center;
   line-height:32px;
 }
@@ -123,3 +123,23 @@ a.navbutton {
   width: 33.333%
 }
 
+.center {
+  text-align:center;
+}
+
+.box {
+  width: 320px;
+  padding: 1px;
+  border: 5px solid #ff8aa9;
+  margin: auto;
+  background-color: #ff8bb9;
+  border-radius: 25px;
+}
+
+.font1 {
+  font-family:Georgia, serif;
+  font-size: 20px;
+  font-weight:bold; /*bold/lighter*/
+  text-align:center;
+  line-height:32px;
+}

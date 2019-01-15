@@ -9,16 +9,19 @@ var Link = require('react-router-dom').Link;
 var getUsers = ({ productId }) => {
     const users = getUsernameList();
     const listUsers = users.map((user) =>
+    <div class = "box font1">
         <li key={user}>{user}</li>
+    </div>
+        
     );
     return (
-        <ul> {listUsers} </ul>
+        <ul class = "center"> {listUsers} </ul>
     )
 }
 
-const AsyncProduct = asyncComponent({
+const AsyncUserList = asyncComponent({
     resolve: () => getUsers,
-    LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
+    LoadingComponent: () => <div>Loading user ist</div>, // Optional
     ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
   });
    
@@ -28,10 +31,10 @@ class Login extends Component {
     
     render() {
         return (
-            <div class = "full">
-                <h1>Getting something done..?</h1>
+            <div>
+                <h1>Something got done..?</h1>
                 <h2>Users:</h2>
-                <AsyncProduct productId={1} />
+                <a href="https://spektrum.fi/"><AsyncUserList user /></a>
             </div>
         )
         
