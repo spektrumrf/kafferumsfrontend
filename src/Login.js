@@ -7,21 +7,24 @@ var Link = require('react-router-dom').Link;
 
 function listify(list) {
 	const newList = list.map((item) =>
-	    <li key={item}>{item}</li>
+		<div key={item} className = "box font1">
+			<li>{item}</li>
+		</div>
 	);
-	return <ul> {newList} </ul>
+	return <ul className = "center"> {newList} </ul>
 }
 
-const AsyncUsernameList = Async(<div>Loading user list</div>, listify, Backend.getUsernameList);
+const AsyncUserList = Async(<div>Loading user list</div>, listify, Backend.getUsernameList);
 
 class Login extends Component {
     
     render() {
         return (
             <div className = "full">
-                <h1>Getting something done..?</h1>
-                <h2>Users:</h2>
-                <AsyncUsernameList />
+                <h2>Select user:</h2>
+                <a href="https://spektrum.fi/">
+                	<AsyncUserList />
+                </a>
             </div>
         )
     }
