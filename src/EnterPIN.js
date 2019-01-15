@@ -4,18 +4,13 @@ import * as Backend from './utils/backend'
 
 var Link = require('react-router-dom').Link;
 
-const urlParams = new URLSearchParams(window.location.search);
-const user = urlParams.get('user');
-
 class EnterPIN extends Component {
-    
+
     render() {
-		if (!user)
-			window.location="/"
         return (
             <div>
             	<h2>Enter pin</h2>
-            	<Keypad/>
+            	<Keypad user={this.props.location.state.user}/>
             </div>
         )
     }
@@ -30,9 +25,11 @@ function handleVerification(verified) {
 	alert(verified)
 }
 
-function verify(event) {
-	const element = document.getElementById("pin")
-	Backend.verifyLogin({pin: element.innerHTML, userName: user}, handleVerification, alert)
+function verify(user) {
+	return (event) => {
+		const element = document.getElementById("pin")
+		Backend.verifyLogin({pin: element.innerHTML, userName: user}, handleVerification, alert)
+	}
 }
 
 class Keypad extends Component {
@@ -59,7 +56,7 @@ class Keypad extends Component {
             	<div>
 		        	<KeypadButton value="<<" action={alert}/>
 		        	<KeypadButton value="0"/>
-		        	<KeypadButton value="OK" action={verify}/>
+		        	<KeypadButton value="OK" action={verify(this.props.user)}/>
             	</div>
             </div>
         )

@@ -7,11 +7,14 @@ var Link = require('react-router-dom').Link;
 
 function listify(list) {
 	const newList = list.map((item) =>
-		<a key={item} href={"/pin?user=" + item}>
+		<Link key={item} to={{
+			pathname: "/pin",
+			state: { user: item }
+		}}>
 			<div className = "box font1">
 				<li>{item}</li>
 			</div>
-		</a>
+		</Link>
 	);
 	return <ul className = "center"> {newList} </ul>
 }
