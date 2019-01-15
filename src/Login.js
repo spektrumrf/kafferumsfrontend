@@ -2,12 +2,27 @@ import React, { Component } from 'react';
 
 import getUsernameList from './utils/backend'
 
+import { asyncComponent } from 'react-async-component';
+
 var Link = require('react-router-dom').Link;
 
-const users = getUsernameList();
-const listUsers = users.map((user) =>
-  <li key={user}>{user}</li>
-);
+var moi = ({ productId }) => {
+    const users = getUsernameList();
+    const listUsers = users.map((user) =>
+        <li key={user}>{user}</li>
+    );
+    return (
+        <ul> {listUsers} </ul>
+    )
+}
+
+const AsyncProduct = asyncComponent({
+    resolve: () => moi,
+    LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
+    ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
+  });
+   
+  
 
 class Login extends Component {
     
@@ -15,7 +30,8 @@ class Login extends Component {
         return (
             <div>
                 <h1>Getting something done..?</h1>
-                <ul><h3>{listUsers}</h3></ul>
+                <h2>Users:</h2>
+                <AsyncProduct productId={1} />
             </div>
         )
         

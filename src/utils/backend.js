@@ -1,40 +1,36 @@
 
-function httpRequestAsync(targetUrl, verb, data, success, handleError) {
-    var xmlHttp = new XMLHttpRequest();
-	xmlHttp.onreadystatechange = () => {
-		if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-			success(xmlHttp.responseText, xmlHttp);
-		else if (handleError)
-			handleError(xmlHttp.responseText, xmlHttp);
-	};
-	xmlHttp.open(verb, targetUrl, true);
-	if (verb === 'POST') {
-		xmlHttp.setRequestHeader("Content-type", "application/json");
-		xmlHttp.send(JSON.stringify(data));
-	} else {
+function httpRequestSync(targetUrl, verb, data, success, handleError) {
+    var xmlHttp = new XMLHttpRequest();	
+	
+    xmlHttp.open(verb, targetUrl, false);
+    
+	if (data === null) {
 		xmlHttp.send(null);
-	}
+	} else {
+        xmlHttp.setRequestHeader("Content-type", "application/json");
+		xmlHttp.send(JSON.stringify(data));    
+    }
+
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+		return success(xmlHttp.responseText, xmlHttp);
+	else
+		return handleError(xmlHttp.responseText, xmlHttp);
 }
 
-function httpGetAsync(targetUrl, success, handleError) {
-	httpRequestAsync(targetUrl, 'GET', null, success, handleError)
+function httpGetSync(targetUrl, success, handleError) {
+	return httpRequestSync(targetUrl, 'GET', null, success, handleError)
 }
 
-function httpPostAsync(targetUrl, obj, success, handleError) {
-	httpRequestAsync(targetUrl, 'POST', obj, success, handleError)
+function httpPostSync(targetUrl, obj, success, handleError) {
+	return httpRequestSync(targetUrl, 'POST', obj, success, handleError)
 }
 
 function getUsernameList() {
 	var success = (data) => {
-		alert(JSON.parse(data));
+		return(JSON.parse(data));
 	}
 
-	//httpGetAsync('http://localhost:25555/api/user/names', success);
-	
-	var login = { userName: 'waxwax', pin: '1234' }
-	httpPostAsync('http://localhost:25555/api/user/pin', login, success, success);
-	
-	return [];
+	return httpGetSync('http://localhost:25555/api/user/names', JSON.parse, alert);
 }
 
 export default getUsernameList
