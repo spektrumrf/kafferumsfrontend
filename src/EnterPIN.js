@@ -54,37 +54,6 @@ function verify(user, history) {
 	}
 }
 
-class Keypad extends Component {
-    
-    render() {
-        return (
-            <div>
-            	<KeypadDisplay/>
-            	<div>
-		        	<KeypadButton value="1"/>
-		        	<KeypadButton value="2"/>
-		        	<KeypadButton value="3"/>
-            	</div>
-            	<div>
-		        	<KeypadButton value="4"/>
-		        	<KeypadButton value="5"/>
-		        	<KeypadButton value="6"/>
-            	</div>
-            	<div>
-		        	<KeypadButton value="7"/>
-		        	<KeypadButton value="8"/>
-		        	<KeypadButton value="9"/>
-            	</div>
-            	<div>
-		        	<KeypadButton value="<<" action={alert}/>
-		        	<KeypadButton value="0"/>
-		        	<KeypadButton value="OK" action={verify(this.props)}/>
-            	</div>
-            </div>
-        )
-    }
-}
-
 class KeypadDisplay extends Component {
 
     render() {
