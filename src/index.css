@@ -132,6 +132,7 @@ a.navbutton {
   padding: 1px;
   border: 5px solid #ff8aa9;
   margin: auto;
+  margin-bottom: 10px;
   background-color: #ff8bb9;
   border-radius: 25px;
 }
