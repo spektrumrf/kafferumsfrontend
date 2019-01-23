@@ -29,13 +29,13 @@ function httpPostAsync(targetUrl, obj, success, handleError) {
 }
 
 export function getUsernameList(success, handleError) { 
-	httpGetAsync('http://localhost:25555/api/user/names', (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
+	httpGetAsync('http://localhost:25555/api/names', (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
 
 /**
  * login is in the form of {pin: string, userName: string}
  */
 export function verifyLogin(login, success, handleError) {
-	httpPostAsync('http://localhost:25555/api/user/pin', login, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
+	httpPostAsync('http://localhost:25555/api/pin', login, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
 
