@@ -10,7 +10,29 @@ class EnterPIN extends Component {
         return (
             <div>
             	<h2>Enter pin</h2>
-            	<Keypad user={this.props.location.state.user}/>
+		        <div>
+		        	<KeypadDisplay/>
+		        	<div>
+				    	<KeypadButton value="1"/>
+				    	<KeypadButton value="2"/>
+				    	<KeypadButton value="3"/>
+		        	</div>
+		        	<div>
+				    	<KeypadButton value="4"/>
+				    	<KeypadButton value="5"/>
+				    	<KeypadButton value="6"/>
+		        	</div>
+		        	<div>
+				    	<KeypadButton value="7"/>
+				    	<KeypadButton value="8"/>
+				    	<KeypadButton value="9"/>
+		        	</div>
+		        	<div>
+				    	<KeypadButton value="<<" action={alert}/>
+				    	<KeypadButton value="0"/>
+				    	<KeypadButton value="OK" action={verify(this.props.location.state.user, this.props.history)}/>
+		        	</div>
+		        </div>
             </div>
         )
     }
@@ -21,14 +43,14 @@ function appendNumber(event) {
 	element.innerHTML += event.target.innerHTML;
 }
 
-function handleVerification(verified) {
-	alert(verified)
-}
-
-function verify(user) {
+function verify(user, history) {
 	return (event) => {
 		const element = document.getElementById("pin")
-		Backend.verifyLogin({pin: element.innerHTML, userName: user}, handleVerification, alert)
+		Backend.verifyLogin(
+			{pin: element.innerHTML, userName: user},
+			(verified) => verified ? history.push('/home') : alert("WRONG"),
+			alert
+		)
 	}
 }
 
@@ -56,7 +78,7 @@ class Keypad extends Component {
             	<div>
 		        	<KeypadButton value="<<" action={alert}/>
 		        	<KeypadButton value="0"/>
-		        	<KeypadButton value="OK" action={verify(this.props.user)}/>
+		        	<KeypadButton value="OK" action={verify(this.props)}/>
             	</div>
             </div>
         )
