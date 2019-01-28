@@ -43,12 +43,22 @@ function appendNumber(event) {
 	element.innerHTML += event.target.innerHTML;
 }
 
+
 function verify(user, history) {
+	const handleLoginResponse = (loginResponse) => {
+		if (loginResponse.success) {
+			console.log(loginResponse.token)
+			alert(loginResponse.token)
+			history.push('/home')
+		} else {
+			alert("You are fake news")
+		}
+	}
 	return (event) => {
 		const element = document.getElementById("pin")
 		Backend.verifyLogin(
 			{pin: element.innerHTML, userName: user},
-			(verified) => verified ? history.push('/home') : alert("WRONG"),
+			handleLoginResponse,
 			alert
 		)
 	}

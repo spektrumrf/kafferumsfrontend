@@ -6,7 +6,7 @@ function httpRequestAsync(targetUrl, verb, data, success, handleError) {
 	if (data === null) {
 		xmlHttp.send(null);
 	} else {
-        xmlHttp.setRequestHeader("Content-type", "application/json");
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
 		xmlHttp.send(JSON.stringify(data));    
     }
 
@@ -28,6 +28,10 @@ function httpPostAsync(targetUrl, obj, success, handleError) {
 	httpRequestAsync(targetUrl, 'POST', obj, success, handleError)
 }
 
+function httpPostAsyncWithToken(targetUrl, accessToken, obj, success, handleError) {
+	httpRequestAsync(targetUrl + '?token=' + accessToken, 'POST', obj, success, handleError)
+}
+
 export function getUsernameList(success, handleError) { 
 	httpGetAsync('http://localhost:25555/api/names', (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
@@ -39,3 +43,17 @@ export function verifyLogin(login, success, handleError) {
 	httpPostAsync('http://localhost:25555/api/pin', login, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
 
+/**
+ * items is in the form of [{itemId: int, amount: int}]
+ */
+export function purchase(ledgerId, items, accessToken, success, handleError) {
+	var purchaseData = {
+		ledgerId: ledgerId,
+		items: items
+	}
+	httpPostAsyncWithToken('http://localhost:25555/api/user/purchase', accessToken, purchaseData, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
+}
+
+export function logout(accessToken, success, handleError) {
+	httpPostAsyncWithToken('http://localhost:25555/api/user/logout', accessToken, null, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
+}
