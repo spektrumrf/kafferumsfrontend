@@ -24,15 +24,14 @@ class Home extends Component {
 }
 UserContext.contextType = UserContext;
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmttdXMiLCJpc3MiOiJhdXRoMCIsImV4cCI6MTU0ODY5MDY1MCwiaWF0IjoxNTQ4NjkwMzUwfQ.WXXIsxxoyRhRNk7OuqXXxTlY91Sk-yxBmOyOm41yTdk';
-
 function test() {
-	Backend.purchase(1, [{itemId: 1, amount: 2}], token, alert, alert);
+	Backend.purchase(1, [{itemId: 1, amount: 2}], sessionStorage.getItem('token'), alert, alert);
 }
 
 function logout(history) {
 	return () => {
-		Backend.logout(token, console.log, console.log);
+		Backend.logout(sessionStorage.getItem('token'), console.log, console.log);
+		sessionStorage.removeItem('token')
 		history.push("/");
 	}
 }

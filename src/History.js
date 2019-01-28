@@ -12,9 +12,11 @@ function displayLedger(ledgerData) {
 	return <ul className = "center"> {newList} </ul>
 }
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmttdXMiLCJpc3MiOiJhdXRoMCIsImV4cCI6MTU0ODY5MDY1MCwiaWF0IjoxNTQ4NjkwMzUwfQ.WXXIsxxoyRhRNk7OuqXXxTlY91Sk-yxBmOyOm41yTdk'
+function getLedger(success, handleError) {
+	return Backend.getLedger(1, sessionStorage.getItem('token'), success, handleError)
+}
 
-const AsyncLedgerHistory = Async(<div>Loading ledger</div>, displayLedger, (success, handleError) => Backend.getLedger(1, token, success, handleError));
+const AsyncLedgerHistory = Async(<div>Loading ledger</div>, displayLedger, getLedger);
 
 class History extends Component {
 

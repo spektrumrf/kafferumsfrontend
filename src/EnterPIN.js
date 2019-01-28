@@ -47,8 +47,7 @@ function appendNumber(event) {
 function verify(user, history) {
 	const handleLoginResponse = (loginResponse) => {
 		if (loginResponse.success) {
-			console.log(loginResponse.token)
-			alert(loginResponse.token)
+			sessionStorage.setItem('token', loginResponse.token)
 			history.push('/home')
 		} else {
 			alert("You are fake news")
