@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import * as Backend from './utils/backend'
 import Async from './utils/async'
 
+var Link = require('react-router-dom').Link;
+
 function displayLedger(ledgerData) {
 	const newList = ledgerData.purchases.map((purchase) =>
 		<div key={purchase.id} className = "box font1">
@@ -24,6 +26,11 @@ class History extends Component {
         return (
             <div>
             	<AsyncLedgerHistory />
+				<Link to={{
+					pathname: "/home"
+				}}>
+					&lt;&lt; Back
+				</Link>
             </div>
         )
     }

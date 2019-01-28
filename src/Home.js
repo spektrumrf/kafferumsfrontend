@@ -18,6 +18,11 @@ class Home extends Component {
             	<div onClick={logout(this.props.history)}>
             		<p>Log out</p>
             	</div>
+				<Link to={{
+					pathname: "/history"
+				}}>
+					Check your ledger
+				</Link>
             </div>
         )
     }
