@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Login';
 import EnterPIN from './EnterPIN';
 import Home from './Home';
+import History from './History';
 
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path='/' component={Login} />
             <Route exact path='/pin' component={EnterPIN} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/history' component={History} />
             <Route render={
               function() {
                 return <p>Not found</p>
