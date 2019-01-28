@@ -54,8 +54,8 @@ export function purchase(ledgerId, items, accessToken, success, handleError) {
 	httpPostAsyncWithToken('http://localhost:25555/api/user/purchase', accessToken, purchaseData, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
 
-export function logout(accessToken, success, handleError) {
-	httpPostAsyncWithToken('http://localhost:25555/api/user/logout', accessToken, null, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
+export function getLedgers(token, success, handleError) {
+	httpGetAsync('http://localhost:25555/api/user/ledgers?token=' + token, (data, xmlHttp) => success(JSON.parse(data), xmlHttp), handleError);
 }
 
 export function getLedger(ledgerId, token, success, handleError) {

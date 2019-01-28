@@ -28,7 +28,7 @@ class EnterPIN extends Component {
 				    	<KeypadButton value="9"/>
 		        	</div>
 		        	<div>
-				    	<KeypadButton value="<<" action={alert}/>
+				    	<KeypadButton value="<<" action={backward(this.props.history)}/>
 				    	<KeypadButton value="0"/>
 				    	<KeypadButton value="OK" action={verify(this.props.location.state.user, this.props.history)}/>
 		        	</div>
@@ -41,6 +41,16 @@ class EnterPIN extends Component {
 function appendNumber(event) {
 	const element = document.getElementById("pin")
 	element.innerHTML += event.target.innerHTML;
+}
+
+function backward(history) {
+	return (event) => {
+		const element = document.getElementById("pin")
+		if (element.innerHTML === '')
+			history.push('/')
+		else
+			element.innerHTML = ''
+	}
 }
 
 

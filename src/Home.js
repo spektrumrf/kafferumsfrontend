@@ -35,7 +35,6 @@ function test() {
 
 function logout(history) {
 	return () => {
-		Backend.logout(sessionStorage.getItem('token'), console.log, console.log);
 		sessionStorage.removeItem('token')
 		history.push("/");
 	}

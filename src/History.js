@@ -5,6 +5,15 @@ import Async from './utils/async'
 
 var Link = require('react-router-dom').Link;
 
+function displayLedgerSelection(ledgers) {
+	const newList = ledgers.map((ledger) =>
+		<div key={ledger.id} className = "box font1">
+			<li>{ledger.id}</li>
+		</div>
+	);
+	return <ul className = "center"> {newList} </ul>
+}
+
 function displayLedger(ledgerData) {
 	const newList = ledgerData.purchases.map((purchase) =>
 		<div key={purchase.id} className = "box font1">
@@ -14,17 +23,30 @@ function displayLedger(ledgerData) {
 	return <ul className = "center"> {newList} </ul>
 }
 
-function getLedger(success, handleError) {
-	return Backend.getLedger(1, sessionStorage.getItem('token'), success, handleError)
+function getLedgers(token) {
+	return (success, handleError) => Backend.getLedgers(token, success, handleError)
 }
 
-const AsyncLedgerHistory = Async(<div>Loading ledger</div>, displayLedger, getLedger);
+function getLedger(ledgerId, token) {
+	return (success, handleError) => Backend.getLedger(ledgerId, token, success, handleError)
+}
+
+var token;
+var AsyncLedgerSelection;
+var AsyncLedgerHistory;
 
 class History extends Component {
+
+	componentWillMount() {
+    	token = sessionStorage.getItem('token');
+		AsyncLedgerSelection = Async(<div>Loading ledger list</div>, displayLedgerSelection, getLedgers(token));
+		AsyncLedgerHistory = () => (<div>Select ledger</div>)//Async(<div>Loading ledger</div>, displayLedger, getLedger(1, token));
+	}
 
     render() {
         return (
             <div>
+            	<AsyncLedgerSelection />
             	<AsyncLedgerHistory />
 				<Link to={{
 					pathname: "/home"
