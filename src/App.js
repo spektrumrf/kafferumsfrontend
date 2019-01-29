@@ -20,7 +20,7 @@ class App extends Component {
             <Route exact path='/' component={Login} />
             <Route exact path='/pin' component={EnterPIN} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/history' component={History} />
+            <Route path='/history' component={History} />
             <Route render={
               function() {
                 return <p>Not found</p>

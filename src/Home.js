@@ -11,32 +11,34 @@ class Home extends Component {
    		let user = this.context;
         return (
             <div>
-            	<h2>Welcome back {user.name} {user.language}</h2>
-            	<div onClick={test}>
+            	<h2>Welcome back {user.name}! language is {user.language}</h2>
+            	<button onClick={test}>
             		<p>Purchase Snickers&copy;</p>
-            	</div>
-            	<div onClick={logout(this.props.history)}>
+            	</button>
+            	<button onClick={logout(this.props.history)}>
             		<p>Log out</p>
-            	</div>
-				<Link to={{
-					pathname: "/history"
-				}}>
-					Check your ledger
-				</Link>
+            	</button>
+            	<button>
+					<Link to={{
+						pathname: "/history"
+					}}>
+						<p>Check your ledger</p>
+					</Link>
+            	</button>
             </div>
         )
     }
 }
-UserContext.contextType = UserContext;
+Home.contextType = UserContext;
 
 function test() {
-	Backend.purchase(1, [{itemId: 1, amount: 2}], sessionStorage.getItem('token'), alert, alert);
+	Backend.purchase(sessionStorage.getItem('ledgerId'), [{itemId: 1, amount: 1}], sessionStorage.getItem('token'), alert, alert);
 }
 
 function logout(history) {
 	return () => {
-		sessionStorage.removeItem('token')
-		history.push("/");
+		sessionStorage.clear()
+		history.push("/")
 	}
 }
 

@@ -4,11 +4,12 @@ import * as Backend from './utils/backend'
 import Async from './utils/async'
 
 var Link = require('react-router-dom').Link;
+var queryString = require('query-string');
 
 function displayLedgerSelection(ledgers) {
 	const newList = ledgers.map((ledger) =>
 		<div key={ledger.id} className = "box font1">
-			<li>{ledger.id}</li>
+			<li><Link to={{pathname: "/history", search: "?id=" + ledger.id}}>{ledger.id}</Link></li>
 		</div>
 	);
 	return <ul className = "center"> {newList} </ul>
@@ -17,7 +18,7 @@ function displayLedgerSelection(ledgers) {
 function displayLedger(ledgerData) {
 	const newList = ledgerData.purchases.map((purchase) =>
 		<div key={purchase.id} className = "box font1">
-			<li>{purchase.timestamp} -- {purchase.total}</li>
+			<li>{purchase.timestamp} -- {(purchase.total/100.0).toFixed(2)}</li>
 		</div>
 	);
 	return <ul className = "center"> {newList} </ul>
@@ -40,7 +41,12 @@ class History extends Component {
 	componentWillMount() {
     	token = sessionStorage.getItem('token');
 		AsyncLedgerSelection = Async(<div>Loading ledger list</div>, displayLedgerSelection, getLedgers(token));
-		AsyncLedgerHistory = () => (<div>Select ledger</div>)//Async(<div>Loading ledger</div>, displayLedger, getLedger(1, token));
+		
+		var ledgerId = queryString.parse(this.props.location.search).id
+		if (ledgerId)
+			AsyncLedgerHistory = Async(<div>Loading ledger</div>, displayLedger, getLedger(ledgerId, token));
+		else
+			AsyncLedgerHistory = () => (<div>Select ledger</div>)
 	}
 
     render() {
