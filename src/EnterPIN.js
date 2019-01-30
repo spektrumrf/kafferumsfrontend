@@ -59,6 +59,7 @@ function verify(user, history) {
 		if (loginResponse.success) {
 			sessionStorage.setItem('token', loginResponse.token)
 			sessionStorage.setItem('ledgerId', loginResponse.ledgerId)
+			sessionStorage.setItem('name', user)
 			history.push('/home')
 		} else {
 			alert("You are fake news")
