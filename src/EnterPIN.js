@@ -8,31 +8,33 @@ class EnterPIN extends Component {
 
     render() {
         return (
-            <div>
+            <div className="center">
             	<h2>Enter pin</h2>
-		        <div>
-		        	<KeypadDisplay/>
-		        	<div>
+		        <table id="pinTable"><tbody>
+		        	<tr>
+		        		<KeypadDisplay/>
+		        	</tr>
+		        	<tr>
 				    	<KeypadButton value="1"/>
 				    	<KeypadButton value="2"/>
 				    	<KeypadButton value="3"/>
-		        	</div>
-		        	<div>
+		        	</tr>
+		        	<tr>
 				    	<KeypadButton value="4"/>
 				    	<KeypadButton value="5"/>
 				    	<KeypadButton value="6"/>
-		        	</div>
-		        	<div>
+		        	</tr>
+		        	<tr>
 				    	<KeypadButton value="7"/>
 				    	<KeypadButton value="8"/>
 				    	<KeypadButton value="9"/>
-		        	</div>
-		        	<div>
+		        	</tr>
+		        	<tr>
 				    	<KeypadButton value="<<" action={backward(this.props.history)}/>
 				    	<KeypadButton value="0"/>
 				    	<KeypadButton value="OK" action={verify(this.props.location.state.user, this.props.history)}/>
-		        	</div>
-		        </div>
+		        	</tr>
+		        </tbody></table>
             </div>
         )
     }
@@ -78,15 +80,15 @@ function verify(user, history) {
 class KeypadDisplay extends Component {
 
     render() {
-		return <div style={{textAlign: "center"}}><p>&nbsp;<span id="pin"></span></p></div>
+		return <td colSpan="3"><p>&nbsp;<span id="pin"></span></p></td>
 	}
 }
 
 function KeypadButton(props) {
 	return (
-	    <div style={{float: "left", width: "33.3%", textAlign: "center", height: "128px"}} onClick={props.action ? props.action : appendNumber}>
-	    	{props.value}
-	    </div>
+	    <td onClick={props.action ? props.action : appendNumber}>
+	    	<div className="roundBox">{props.value}</div>
+	    </td>
 	)
 }
 

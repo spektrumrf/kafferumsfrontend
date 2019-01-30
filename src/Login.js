@@ -11,12 +11,12 @@ function listify(list) {
 			pathname: "/pin",
 			state: { user: item }
 		}}>
-			<div className = "box font1">
+			<div className = "roundBox font1">
 				<li>{item}</li>
 			</div>
 		</Link>
 	);
-	return <ul className = "center"> {newList} </ul>
+	return <ul id="userList" className="center"> {newList} </ul>
 }
 
 const AsyncUserList = Async(<div>Loading user list</div>, listify, Backend.getUsernameList);
@@ -25,8 +25,8 @@ class Login extends Component {
     
     render() {
         return (
-            <div className = "full">
-                <h2>Select user:</h2>
+            <div className="full">
+            	<p>TODO: new user box</p>
                 <AsyncUserList />
             </div>
         )

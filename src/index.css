@@ -17,7 +17,7 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: 'Verdana', arial, serif;
+  font-family: Verdana, Geneva, sans-serif;
 }
 
 header {
@@ -66,7 +66,7 @@ object {
 }
 
 h1 {
-  font-family:Georgia, serif;
+  font-family:Verdana, Geneva, sans-serif;
   font-size: 30px;
   font-weight:bold; /*bold/lighter*/
   text-align:center;
@@ -74,7 +74,7 @@ h1 {
 }
 
 h2 {
-  font-family:Georgia, serif;
+  font-family:Verdana, Geneva, sans-serif;
   font-size: 22px;
   font-weight:lighter;
   text-align:center;
@@ -96,16 +96,9 @@ h4 {
 }
 
 a {
-  color: #7070F0;
-}
-
-a:hover div.navbutton:hover {
-  color: #6060D0;
-}
-
-a.navbutton {
   text-decoration: none;
-}      
+  color: #000000;
+}
 
 .full {
   width: 99.999%
@@ -127,20 +120,44 @@ a.navbutton {
   text-align:center;
 }
 
-.box {
-  width: 320px;
-  padding: 1px;
-  border: 5px solid #ff8aa9;
+.roundBox {
+  padding: 2px;
+  border: 2px solid #000000;
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   background-color: #ff8bb9;
-  border-radius: 25px;
+  border-radius: 30px;
 }
 
 .font1 {
-  font-family:Georgia, serif;
-  font-size: 20px;
-  font-weight:bold; /*bold/lighter*/
+  font-family:Verdana, Geneva, sans-serif;
+  font-size: 32px;
   text-align:center;
-  line-height:32px;
+  line-height:48px;
+}
+
+#userList .roundBox {
+  width: 360px;
+}
+
+#userList .roundBox:hover {
+  width: 420px;
+}
+
+#pinTable .roundBox {
+    margin-left: 20px;  
+    margin-right: 20px;  
+    padding-left: 0;  
+    padding-right: 0;  
+    width: 210px;  
+    height: 96px;  
+    font-size: 32px;
+    line-height: 96px;  
+}
+
+#pinTable .roundBox:hover {
+    margin-left: 0;  
+    margin-right: 0;  
+    padding-left: 20px;  
+    padding-right: 20px;  
 }
