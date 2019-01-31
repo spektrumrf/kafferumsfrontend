@@ -19,6 +19,18 @@ function listify(list) {
 	return <ul id="userList" className="center"> {newList} </ul>
 }
 
+function AddUserBox(props) {
+	return (
+		<Link id="addUser" to={{
+			pathname: "/newUser"
+		}}>
+			<div className = "roundBox font1">
+				+
+			</div>
+		</Link>
+	);
+}
+
 const AsyncUserList = Async(<div>Loading user list</div>, listify, Backend.getUsernameList);
 
 class Login extends Component {
@@ -26,7 +38,7 @@ class Login extends Component {
     render() {
         return (
             <div className="full">
-            	<p>TODO: new user box</p>
+            	<AddUserBox />
                 <AsyncUserList />
             </div>
         )

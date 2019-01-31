@@ -140,11 +140,17 @@ ul {
 	padding-left: 0px;
 }
 
-#userList .roundBox {
+#addUser .roundBox {
+  margin: auto;
+  margin-top: 3px;
+  background-color: #15FA09;
+}
+
+#addUser .roundBox, #userList .roundBox {
   width: 360px;
 }
 
-#userList .roundBox:hover {
+#addUser .roundBox:hover, #userList .roundBox:hover {
   width: 420px;
 }
 
