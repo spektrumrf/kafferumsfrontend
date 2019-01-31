@@ -10,24 +10,24 @@ class Home extends Component {
     render() {
    		let user = this.context;
         return (
-            <div>
+            <div id="home">
             	<h2>Welcome back {sessionStorage.getItem('name')}!</h2>
-            	<button onClick={test}>
-            		<p>Purchase Snickers&copy;</p>
-            	</button>
-            	<button onClick={testCredit}>
-            		<p>Purchase 2e credit</p>
-            	</button>
-            	<button onClick={logout(this.props.history)}>
-            		<p>Log out</p>
-            	</button>
-            	<button>
+            	<div className="roundBox font1" onClick={test}>
+            		Purchase Snickers&copy;
+            	</div>
+            	<div className="roundBox font1" onClick={testCredit}>
+            		Purchase 2e credit
+            	</div>
+            	<div className="roundBox font1" onClick={logout(this.props.history)}>
+            		Log out
+            	</div>
+            	<div className="roundBox font1">
 					<Link to={{
 						pathname: "/history"
 					}}>
-						<p>Check your ledger</p>
+						Check your ledger
 					</Link>
-            	</button>
+            	</div>
             </div>
         )
     }

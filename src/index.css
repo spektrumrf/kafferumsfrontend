@@ -136,6 +136,10 @@ a {
   line-height:48px;
 }
 
+ul {
+	padding-left: 0px;
+}
+
 #userList .roundBox {
   width: 360px;
 }
@@ -160,4 +164,22 @@ a {
     margin-right: 0;  
     padding-left: 20px;  
     padding-right: 20px;  
+}
+
+#home .roundBox {
+  width: 360px;
+}
+
+#home .roundBox:hover {
+  width: 420px;
+}
+
+#ledgerPurchases {
+	margin: auto
+}
+
+#ledgerPurchases .roundBox {
+    height: 42px;  
+    line-height: 42px;  
+    width: 210px;  
 }

@@ -8,7 +8,7 @@ var queryString = require('query-string');
 
 function displayLedgerSelection(ledgers) {
 	const newList = ledgers.map((ledger) =>
-		<div key={ledger.id} className = "box font1">
+		<div key={ledger.id} className = "roundBox font1">
 			<li><Link to={{pathname: "/history", search: "?id=" + ledger.id}}>{ledger.id}</Link></li>
 		</div>
 	);
@@ -16,12 +16,13 @@ function displayLedgerSelection(ledgers) {
 }
 
 function displayLedger(ledgerData) {
-	const newList = ledgerData.purchases.map((purchase) =>
-		<div key={purchase.id} className = "box font1">
-			<li>{purchase.timestamp} -- {(purchase.total/100.0).toFixed(2)}</li>
-		</div>
+	const newList = ledgerData.rows.map((row) =>
+		<tr key={row} className = "font1">
+			<td><div className="roundBox">{row.first}</div></td>
+			<td><div className="roundBox">{(row.second/100.0).toFixed(2)}</div></td>
+		</tr>
 	);
-	return <ul className = "center"> {newList} </ul>
+	return <table id="ledgerPurchases"><tbody> {newList} </tbody></table>
 }
 
 function getLedgers(token) {
